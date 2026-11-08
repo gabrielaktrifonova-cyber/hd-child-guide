@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Regulated by Design — A Parent's Guide | HD Compass</title>
+  <meta name="description" content="A parent's guide to understanding your child's Human Design type. Know your child's design. Regulate your own.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --brown: #2c1f0e;
+      --sand: #f5edd8;
+      --beige: #faf7f2;
+      --gold: #c9a84c;
+      --gold-dim: rgba(201,168,76,0.4);
+      --text: #2c1f0e;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--beige);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ── ACCESS GATE ── */
+    #gate {
+      min-height: 100vh;
+      background: var(--brown);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+    }
+
+    .gate-box {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .gate-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 48px;
+    }
+
+    .gate-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(32px, 7vw, 52px);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .gate-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .gate-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      color: rgba(245,237,216,0.45);
+      letter-spacing: 0.08em;
+      margin-bottom: 48px;
+    }
+
+    .gate-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(245,237,216,0.4);
+      margin-bottom: 10px;
+    }
+
+    .gate-input-wrap {
+      display: flex;
+      gap: 0;
+      margin-bottom: 16px;
+    }
+
+    .gate-input {
+      flex: 1;
+      padding: 14px 18px;
+      background: rgba(245,237,216,0.07);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-right: none;
+      color: var(--sand);
+      font-family: 'Jost', sans-serif;
+      font-size: 15px;
+      outline: none;
+      border-radius: 2px 0 0 2px;
+    }
+
+    .gate-input::placeholder { color: rgba(245,237,216,0.25); }
+    .gate-input:focus { border-color: rgba(201,168,76,0.5); }
+
+    .gate-btn {
+      padding: 14px 24px;
+      background: var(--gold);
+      border: none;
+      color: var(--brown);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      border-radius: 0 2px 2px 0;
+      transition: opacity 0.2s;
+    }
+
+    .gate-btn:hover { opacity: 0.85; }
+
+    .gate-error {
+      font-size: 13px;
+      color: rgba(245,237,216,0.4);
+      min-height: 20px;
+    }
+
+    .gate-error.show { color: #e07070; }
+
+    .gate-note {
+      margin-top: 40px;
+      font-size: 12px;
+      color: rgba(245,237,216,0.2);
+      line-height: 1.6;
+    }
+
+    .gate-note a {
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+
+    /* ── GUIDE CONTENT ── */
+    #guide { display: none; }
+
+    /* NAV */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--brown);
+      padding: 0 32px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      color: var(--sand);
+      text-decoration: none;
+    }
+
+    .nav-brand span { color: var(--gold); }
+
+    .nav-link {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: rgba(245,237,216,0.4);
+      text-decoration: none;
+    }
+
+    .nav-link:hover { color: var(--gold); }
+
+    /* HERO */
+    .hero {
+      background: var(--brown);
+      padding: 80px 24px 72px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(36px, 8vw, 68px);
+      font-weight: 300;
+      color: var(--sand);
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .hero-title em { font-style: italic; color: var(--gold); }
+
+    .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      font-weight: 300;
+      font-style: italic;
+      color: rgba(245,237,216,0.45);
+      margin-bottom: 32px;
+    }
+
+    .hero-byline {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: rgba(245,237,216,0.25);
+    }
+
+    /* INTRO */
+    .intro {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    .intro-lead {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      font-weight: 300;
+      line-height: 1.65;
+      color: var(--brown);
+      margin-bottom: 24px;
+    }
+
+    .intro p {
+      font-size: 16px;
+      color: rgba(44,31,14,0.75);
+      margin-bottom: 16px;
+    }
+
+    /* STEP */
+    .step-section {
+      background: var(--brown);
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .step-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--sand);
+      margin-bottom: 20px;
+    }
+
+    .step-body {
+      font-size: 15px;
+      color: rgba(245,237,216,0.6);
+      line-height: 1.75;
+      margin-bottom: 24px;
+    }
+
+    .step-links {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .step-link {
+      display: inline-block;
+      padding: 10px 22px;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .step-link:hover { background: rgba(201,168,76,0.08); }
+
+    .step-note {
+      font-size: 12px;
+      color: rgba(245,237,216,0.25);
+      font-style: italic;
+    }
+
+    /* TYPE CARDS */
+    .types-section {
+      padding: 64px 24px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      display: block;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 40px);
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 48px;
+      color: var(--brown);
+    }
+
+    .type-card {
+      background: white;
+      border-left: 3px solid var(--gold);
+      padding: 36px 36px 32px;
+      margin-bottom: 32px;
+      box-shadow: 0 2px 16px rgba(44,31,14,0.06);
+    }
+
+    .type-header {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .type-icon {
+      font-size: 22px;
+    }
+
+    .type-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 26px;
+      font-weight: 600;
+      color: var(--brown);
+    }
+
+    .type-qhd {
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      text-transform: uppercase;
+    }
+
+    .type-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(44,31,14,0.45);
+      margin-bottom: 20px;
+    }
+
+    .type-who {
+      font-size: 15px;
+      color: rgba(44,31,14,0.75);
+      margin-bottom: 20px;
+      line-height: 1.75;
+    }
+
+    .type-sig {
+      display: flex;
+      gap: 20px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .sig-pill {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+    }
+
+    .sig-pill.aligned { background: rgba(201,168,76,0.12); color: #7a6020; }
+    .sig-pill.shadow { background: rgba(44,31,14,0.07); color: rgba(44,31,14,0.5); }
+
+    .type-h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--brown);
+      margin-bottom: 10px;
+      margin-top: 20px;
+    }
+
+    .type-list {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 16px;
+    }
+
+    .type-list li {
+      font-size: 15px;
+      color: rgba(44,31,14,0.75);
+      padding: 5px 0 5px 20px;
+      position: relative;
+      line-height: 1.65;
+    }
+
+    .type-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 9px;
+      top: 8px;
+    }
+
+    .type-myth {
+      background: var(--beige);
+      padding: 20px 24px;
+      margin-top: 24px;
+      border-radius: 2px;
+    }
+
+    .myth-title {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin-bottom: 10px;
+    }
+
+    .myth-item {
+      font-size: 14px;
+      color: rgba(44,31,14,0.65);
+      margin-bottom: 8px;
+      line-height: 1.6;
+    }
+
+    .myth-item strong { color: var(--brown); }
+
+    .type-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      font-style: italic;
+      color: rgba(44,31,14,0.5);
+      border-left: 2px solid var(--gold-dim);
+      padding-left: 16px;
+      margin-top: 20px;
+      line-height: 1.65;
+    }
+
+    /* CLOSING */
+    .closing {
+      background: var(--brown);
+      padding: 72px 24px;
+      text-align: center;
+    }
+
+    .closing-inner {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .closing-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 300;
+      color: var(--sand);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .closing-body {
+      font-size: 16px;
+      color: rgba(245,237,216,0.55);
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+
+    .closing-quote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px;
+      font-style: italic;
+      font-weight: 300;
+      color: rgba(245,237,216,0.7);
+      margin-bottom: 48px;
+      line-height: 1.55;
+    }
+
+    .btn-gold {
+      display: inline-block;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: var(--brown);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      margin: 0 8px 12px;
+      transition: opacity 0.2s;
+    }
+
+    .btn-gold:hover { opacity: 0.85; }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 13px 32px;
+      border: 1px solid rgba(201,168,76,0.35);
+      color: rgba(245,237,216,0.6);
+      font-family: 'Jost', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border-radius: 2px;
+      margin: 0 8px 12px;
+      transition: border-color 0.2s;
+    }
+
+    .btn-outline:hover { border-color: rgba(201,168,76,0.6); }
+
+    /* FOOTER */
+    .footer {
+      background: var(--brown);
+      border-top: 1px solid rgba(201,168,76,0.1);
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 12px;
+      color: rgba(245,237,216,0.2);
+      margin-bottom: 4px;
+    }
+
+    .footer a {
+      color: var(--gold-dim);
+      text-decoration: none;
+    }
+
+    @media (max-width: 600px) {
+      .type-card { padding: 28px 22px; }
+      .nav { padding: 0 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ ACCESS GATE ══════════════════ -->
+<div id="gate">
+  <div class="gate-box">
+    <div class="gate-logo">Human Design Compass</div>
+
+    <h1 class="gate-title">Regulated<br><em>by Design</em></h1>
+    <p class="gate-subtitle">A Parent's Guide to Human Design Types</p>
+
+    <p class="gate-label">Enter your access code</p>
+    <div class="gate-input-wrap">
+      <input
+        type="text"
+        id="codeInput"
+        class="gate-input"
+        placeholder="your access code"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+      >
+      <button class="gate-btn" onclick="checkCode()">Unlock →</button>
+    </div>
+    <p class="gate-error" id="gateError"></p>
+
+    <p class="gate-note">
+      Your access code is included in your purchase confirmation.<br>
+      Questions? <a href="mailto:humandesign@hdcompass.com">humandesign@hdcompass.com</a>
+    </p>
+  </div>
+</div>
+
+<!-- ══════════════════ GUIDE CONTENT ══════════════════ -->
+<div id="guide">
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="https://hdcompass.com" class="nav-brand">Human Design <span>Compass</span></a>
+    <a href="https://hdcompass.com" class="nav-link">hdcompass.com</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="eyebrow">✦ Your Guide</span>
+    <h1 class="hero-title">Regulated<br><em>by Design</em></h1>
+    <p class="hero-sub">A Parent's Guide to Human Design Types</p>
+    <p class="hero-byline">By Gabriela Trifonova · Human Design Compass</p>
+  </section>
+
+  <!-- INTRO -->
+  <section class="intro">
+    <p class="intro-lead">You are not imagining it. Your child really is different — not just from other children, but from you. And that difference isn't a problem to fix. It's a design to understand.</p>
+    <p>Human Design is a system that maps out how a person is wired — how they make decisions, where they get their energy, what drains them, and what makes them come alive. It combines elements of astrology, the I Ching, the Kabbalah, and quantum physics into a practical blueprint for understanding yourself and the people you love.</p>
+    <p>When it comes to parenting, it changes everything. Instead of asking "why won't my child just listen?" you start asking "what does my child actually need?" Instead of pushing against their nature, you learn to work with it. And instead of raising a smaller version of yourself, you get to raise the full version of them.</p>
+    <p>There are five Human Design Types. Each child falls into one of them. Each type has a different way of operating in the world — a different source of energy, a different decision-making style, and a different set of needs that, when met, allow them to genuinely thrive.</p>
+    <p>By the end of this guide, you'll know your child's type, understand what makes them tick, and have real strategies for supporting them — not who you wish they were, but who they actually are.</p>
+  </section>
+
+  <!-- STEP 1 -->
+  <section class="step-section">
+    <div class="step-inner">
+      <span class="eyebrow">Step One</span>
+      <h2 class="step-title">Find Your Child's Human Design Type</h2>
+      <p class="step-body">Before you dive into the type descriptions, you need to know your child's type. This takes about two minutes and requires only three things: your child's exact birth date, their birth time (check the birth certificate), and their birth city.<br><br>Generate a free chart at one of these sites. At the top of the chart, you'll see a label — Generator, Manifesting Generator, Projector, Manifestor, or Reflector. That is your child's type.</p>
+      <div class="step-links">
+        <a href="https://www.mybodygraph.com" target="_blank" rel="noopener" class="step-link">mybodygraph.com →</a>
+        <a href="https://www.jovianarchive.com" target="_blank" rel="noopener" class="step-link">jovianarchive.com →</a>
+      </div>
+      <p class="step-note">Don't worry about the rest of the chart right now. Finding the type is all you need for this guide.</p>
+    </div>
+  </section>
+
+  <!-- TYPE CARDS -->
+  <section class="types-section">
+    <span class="section-eyebrow">✦ The Five Types</span>
+    <h2 class="section-title">Know Your Child's Design</h2>
+
+    <!-- GENERATOR -->
+    <div class="type-card">
+      <div class="type-header">
+        <span class="type-icon">⚡</span>
+        <span class="type-name">The Generator</span>
+        <span class="type-qhd">Alchemist in QHD</span>
+      </div>
+      <p class="type-tagline">"I need to feel it in my gut."</p>
+      <p class="type-who">Generators are the most common Human Design type — roughly 37% of the population. They are the builders of the world. They have a sustainable, powerful life-force energy that, when engaged with the right things, feels almost unlimited. When engaged with the wrong things, it burns out fast.<br><br>Your Generator child is not lazy. They are not unmotivated. But they are deeply wired to respond — not to initiate. When something genuinely lights them up from the inside, they can sustain effort and enthusiasm for hours. When it doesn't, forcing them creates frustration — for both of you.</p>
+      <div class="type-sig">
+        <span class="sig-pill aligned">✦ In alignment: Satisfaction</span>
+        <span class="sig-pill shadow">Out of alignment: Frustration</span>
+      </div>
+      <h3 class="type-h3">What They Need From You</h3>
+      <ul class="type-list">
+        <li>Give them real choices — not just tasks. "Do you want to do your homework before or after dinner?" is different from "do your homework now."</li>
+        <li>Pay attention to their gut response. Generators have a sacral response — a body-level yes or no that comes before the mind catches up. Honour it.</li>
+        <li>Let them finish things. Generators feel deeply satisfied by completion. Interrupting them mid-flow is genuinely disruptive.</li>
+        <li>Don't force early bedtimes if they're not tired. Generators discharge energy through the day and need to reach a natural stopping point.</li>
+        <li>Expose them to lots of things and watch what they light up around. That lighting up is their guidance system.</li>
+      </ul>
+      <div class="type-myth">
+        <p class="myth-title">Common Misunderstandings</p>
+        <p class="myth-item"><strong>"My child is so stubborn."</strong> — They're not stubborn, they're waiting for a genuine yes. Work with the response, not against it.</p>
+        <p class="myth-item"><strong>"They start things and never finish."</strong> — Check whether they were genuinely engaged to begin with, or just told to do something.</p>
+        <p class="myth-item"><strong>"They have endless energy but then crash."</strong> — Normal for Generators. More real choices = more sustainable energy.</p>
+      </div>
+    </div>
+
+    <!-- MANIFESTING GENERATOR -->
+    <div class="type-card">
+      <div class="type-header">
+        <span class="type-icon">🌀</span>
+        <span class="type-name">The Manifesting Generator</span>
+        <span class="type-qhd">Time Bender in QHD</span>
+      </div>
+      <p class="type-tagline">"I need to do it my way, and fast."</p>
+      <p class="type-who">Manifesting Generators (MGs) are the multi-passionate, high-speed, skip-the-steps type — roughly 33% of the population and often the most misunderstood children in any classroom. They're fast. They're non-linear. They're interested in everything — sometimes all at once. And they do not follow the instructions in the order they're given.<br><br>This is not a problem. It is literally how they're designed. MGs are built to find shortcuts. When you force them to slow down and follow a linear process, you're asking them to work against their own wiring.</p>
+      <div class="type-sig">
+        <span class="sig-pill aligned">✦ In alignment: Satisfaction</span>
+        <span class="sig-pill shadow">Out of alignment: Frustration &amp; Anger</span>
+      </div>
+      <h3 class="type-h3">What They Need From You</h3>
+      <ul class="type-list">
+        <li>Let them do things their way, even if it looks chaotic. The result matters more than the path.</li>
+        <li>Accept that they will start multiple things and abandon some of them. This is not failure — it's how they find what's really theirs.</li>
+        <li>Give them permission to skip steps they've already mastered.</li>
+        <li>Expect them to go back to things they dropped. MGs often return with new energy and a new angle.</li>
+        <li>Keep life interesting. Boredom is the enemy of the Manifesting Generator.</li>
+      </ul>
+      <div class="type-myth">
+        <p class="myth-title">Common Misunderstandings</p>
+        <p class="myth-item"><strong>"They never finish anything."</strong> — They finish what genuinely matters to them. The rest was exploration, not failure.</p>
+        <p class="myth-item"><strong>"They're scattered and unfocused."</strong> — They're multi-channel. This is a strength in disguise.</p>
+        <p class="myth-item"><strong>"They're exhausting."</strong> — Yes. They are also extraordinary. Channel the energy, don't try to contain it.</p>
+      </div>
+    </div>
+
+    <!-- PROJECTOR -->
+    <div class="type-card">
+      <div class="type-header">
+        <span class="type-icon">🔭</span>
+        <span class="type-name">The Projector</span>
+        <span class="type-qhd">Orchestrator in QHD</span>
+      </div>
+      <p class="type-tagline">"I need to be seen and invited."</p>
+      <p class="type-who">Projectors make up about 20% of the population and are the natural guides, advisors, and seers of the world. They are designed to understand systems, people, and situations at a deep level — and to guide others with that understanding. But Projector children are not designed to initiate. They are designed to be recognized and invited.<br><br>Your Projector child likely sees things that others don't. They understand people intuitively. And they are probably told, far too often, to stop telling others what to do. The problem isn't that they're bossy — it's that they haven't yet learned that their gift only lands when someone actually wants it.</p>
+      <div class="type-sig">
+        <span class="sig-pill aligned">✦ In alignment: Success</span>
+        <span class="sig-pill shadow">Out of alignment: Bitterness</span>
+      </div>
+      <h3 class="type-h3">What They Need From You</h3>
+      <ul class="type-list">
+        <li>Recognize them specifically and genuinely. "I noticed how you figured that out — that was really smart" lands differently than generic praise.</li>
+        <li>Ask for their input before giving it to them. "What do you think we should do?" invites the Projector.</li>
+        <li>Protect their rest. Projectors don't have a consistent energy source the way Generators do — pushing through exhaustion creates real health issues.</li>
+        <li>Help them find their people — the ones who genuinely appreciate their insight.</li>
+        <li>Teach them early that not everyone is ready for their guidance — and that's okay.</li>
+      </ul>
+      <p class="type-quote">Projectors often need to nap or have quiet time after school. This isn't laziness — it's their system resetting. Honor it.</p>
+      <div class="type-myth">
+        <p class="myth-title">Common Misunderstandings</p>
+        <p class="myth-item"><strong>"They think they know everything."</strong> — They often do see more than others realize. The skill to develop is timing.</p>
+        <p class="myth-item"><strong>"They're so sensitive when criticized."</strong> — Projectors need to be seen accurately. Misrecognition hurts them more than other types.</p>
+        <p class="myth-item"><strong>"They get tired so easily."</strong> — Yes. Their energy works differently. Rest is not optional for them.</p>
+      </div>
+    </div>
+
+    <!-- MANIFESTOR -->
+    <div class="type-card">
+      <div class="type-header">
+        <span class="type-icon">🔥</span>
+        <span class="type-name">The Manifestor</span>
+        <span class="type-qhd">Initiator in QHD</span>
+      </div>
+      <p class="type-tagline">"I need the freedom to initiate."</p>
+      <p class="type-who">Manifestors are roughly 8% of the population — rare, powerful, and often the most challenging children for parents who don't understand their design. Manifestors are the only type built to initiate — to act without waiting for permission or response. They have a direct, powerful energy that can feel like a bulldozer if you're in their way.<br><br>Here is what most parents don't realize: the controlling, authority-asserting parenting style that works reasonably well with other types actively damages the Manifestor. When a Manifestor child is constantly told to stop, slow down, ask permission, and wait — they learn that their power is a problem.</p>
+      <div class="type-sig">
+        <span class="sig-pill aligned">✦ In alignment: Peace</span>
+        <span class="sig-pill shadow">Out of alignment: Anger</span>
+      </div>
+      <h3 class="type-h3">What They Need From You</h3>
+      <ul class="type-list">
+        <li>Give them as much autonomy as safely possible. The question is not "did they ask permission" — it's "is this safe and reasonable?"</li>
+        <li>Teach them to inform rather than ask. "We need to know what you're planning before you do it" honours their initiating nature while creating connection.</li>
+        <li>Don't take their anger personally. It is usually information — something is blocking them. Help them find the real source.</li>
+        <li>Create space for their ideas. Manifestor children have visions. Take them seriously.</li>
+        <li>Let them lead in age-appropriate ways — projects, plans, decisions within the family.</li>
+      </ul>
+      <p class="type-quote">A Manifestor child who is consistently controlled without explanation will eventually either shut down completely or become very difficult. The solution is not more control — it's more trust and more information.</p>
+      <div class="type-myth">
+        <p class="myth-title">Common Misunderstandings</p>
+        <p class="myth-item"><strong>"They never ask permission."</strong> — They're not designed to. Teach informing instead.</p>
+        <p class="myth-item"><strong>"They're so angry all the time."</strong> — Anger is their signal that something is blocked. Investigate the block.</p>
+        <p class="myth-item"><strong>"They're controlling."</strong> — They're initiators. Channel it, don't suppress it.</p>
+      </div>
+    </div>
+
+    <!-- REFLECTOR -->
+    <div class="type-card">
+      <div class="type-header">
+        <span class="type-icon">🌙</span>
+        <span class="type-name">The Reflector</span>
+        <span class="type-qhd">Calibrator in QHD</span>
+      </div>
+      <p class="type-tagline">"I need time and the right environment."</p>
+      <p class="type-who">Reflectors are the rarest Human Design type — less than 1% of the population. If you are the parent of a Reflector child, you have likely known from early on that this child is different in a way that is hard to explain. They seem to change. They seem to reflect the people around them. One day they're energetic, the next they're withdrawn.<br><br>Reflectors are designed to be mirrors. They take in the energy of the people and environments around them and reflect it back. This is not instability — it is a profound sensitivity to the world that, when understood, becomes a remarkable gift.</p>
+      <div class="type-sig">
+        <span class="sig-pill aligned">✦ In alignment: Delight</span>
+        <span class="sig-pill shadow">Out of alignment: Disappointment</span>
+      </div>
+      <h3 class="type-h3">What They Need From You</h3>
+      <ul class="type-list">
+        <li>Create a calm, healthy home environment. More than any other type, the Reflector child is affected by the people and spaces around them.</li>
+        <li>Never rush a major decision. Reflectors need a full lunar cycle (approximately 28 days) to make big decisions well.</li>
+        <li>Take their shifts in mood and energy as information about their environment, not their character.</li>
+        <li>Give them access to nature and beauty. Reflectors restore in open, natural spaces.</li>
+        <li>Celebrate their uniqueness. Reflector children often feel like they don't quite fit anywhere — help them understand that not fitting in is part of their design, not a flaw.</li>
+      </ul>
+      <p class="type-quote">School changes — new classrooms, new teachers, new social dynamics — hit Reflectors harder than other types. Extra transition support is not overprotection. It's appropriate care for how they're wired.</p>
+      <div class="type-myth">
+        <p class="myth-title">Common Misunderstandings</p>
+        <p class="myth-item"><strong>"They're inconsistent."</strong> — They're responsive. There's a difference.</p>
+        <p class="myth-item"><strong>"They don't know what they want."</strong> — They need time and the right environment to know. Rushing them doesn't work.</p>
+        <p class="myth-item"><strong>"They're too sensitive."</strong> — Their sensitivity is their gift. Protect it, don't try to harden them.</p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <div class="closing-inner">
+      <span class="eyebrow">✦ A Final Word</span>
+      <h2 class="closing-title">Your child is not a problem to solve.<br>They are a person to know.</h2>
+      <p class="closing-body">Human Design doesn't give you all the answers. But it gives you a map. And with a map, you stop fighting the terrain and start learning to navigate it.<br><br>The fact that you're here, reading this, looking for a way to understand them better — that already makes you the parent they need.</p>
+      <p class="closing-quote">"The greatest gift you can give your child is not what you think they need, but a genuine curiosity about who they actually are."</p>
+      <a href="https://hdcompass.com/hdcompass-ai.html" class="btn-gold">Try Compass AI Free →</a>
+      <a href="https://hdcompass.com" class="btn-outline">Visit HD Compass</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Human Design Compass · <a href="https://hdcompass.com">hdcompass.com</a></p>
+    <p style="margin-top:4px;">Questions? <a href="mailto:humandesign@hdcompass.com">humandesign@hdcompass.com</a></p>
+  </footer>
+
+</div><!-- end #guide -->
+
+<script>
+  const VALID_CODES = ['compassguide'];
+
+  function checkCode() {
+    const input = document.getElementById('codeInput').value.trim().toLowerCase();
+    const error = document.getElementById('gateError');
+
+    if (VALID_CODES.includes(input)) {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('guide').style.display = 'block';
+      window.scrollTo(0, 0);
+      try { sessionStorage.setItem('hd_guide_access', '1'); } catch(e) {}
+    } else {
+      error.textContent = 'That code doesn\'t look right — check your purchase confirmation for the current one.';
+      error.classList.add('show');
+      document.getElementById('codeInput').focus();
+    }
+  }
+
+  document.getElementById('codeInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') checkCode();
+  });
+
+  // Auto-unlock if already accessed this session
+  try {
+    if (sessionStorage.getItem('hd_guide_access') === '1') {
+      document.getElementById('gate').style.display = 'none';
+      document.getElementById('guide').style.display = 'block';
+    }
+  } catch(e) {}
+</script>
+
+</body>
+</html>
